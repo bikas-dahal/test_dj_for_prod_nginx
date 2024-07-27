@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+<!--Main-->
+<div class="container mx-auto flex flex-col items-center justify-center min-h-screen p-4 mb-8">
+
+    <div class="pt-6">
+        <h1 class="text-3xl py-6 mt-10 text-white font-bold">Signup here</h1>
+    </div>
+
+
+    {% for message in messages %}
+    <h5 class="text-lg font-semibold text-red-900 my-2">{{message}}</h5>
+    {% endfor %}
+
+
+    <div class="w-full max-w-lg bg-white text-gray-800 rounded-lg shadow-md p-6">
+        <form class="space-y-4" action="{% url 'signup' %}" method="POST">
+            {% csrf_token %}
+            <div>
+                <label class="block text-sm font-medium text-gray-700">UserName</label>
+                <input type="text" name="username"
+                       class="mt-1 p-2 w-full rounded-md border border-gray-800 shadow-sm"/>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" name="email"
+                       class="mt-1 p-2 w-full rounded-md border border-gray-800 shadow-sm"/>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" name="password"
+                       class="mt-1 p-2  w-full rounded-md border border-gray-800 shadow-sm"/>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Confirm
+                    Password</label>
+                <input type="password" name="confirm_password"
+                       class="mt-1 p-2 w-full rounded-md border border-gray-800 shadow-sm"/>
+            </div>
+            <div>
+                <button type="submit"
+                        class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
+                    Register
+                </button>
+            </div>
+        </form>
+        <div>
+            <p class="text-lg text-center font-semibold mt-6">Already have an
+                account
+                <a class="text-blue-500 hover:underline"
+                   href="{% url 'signin' %}">Sign In Here</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
